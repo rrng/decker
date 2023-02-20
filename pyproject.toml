@@ -1,9 +1,9 @@
 [tool.ruff]
-select = ["B", "C", "E", "F", "W"]
+select = ["B", "C", "E", "F", "W", "I", "N"]
 ignore = ["E501"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = ["B", "C", "E", "F", "W"]
+fixable = ["B", "C", "E", "F", "W", "I", "N"]
 unfixable = []
 
 # Exclude a variety of commonly ignored directories.
@@ -54,6 +54,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.poetry.dev-dependencies]
+black = "^23.1.0"
 
 [build-system]
 requires = ["poetry-core"]
