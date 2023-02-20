@@ -1,9 +1,10 @@
-from enum import Enum
+from enum import Enum, auto
 from typing import Tuple
 
+
 class Color(Enum):
-    RED = (1, (255,0,0), "#FF0000")
-    BLACK = (2, (0,0,0), "#000000")
+    RED = (auto(), (255, 0, 0), "#FF0000")
+    BLACK = (auto(), (0, 0, 0), "#000000")
 
     def __str__(self):
         return self.name.capitalize()
