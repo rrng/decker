@@ -33,13 +33,10 @@ class PlayingCard(Card):
         return f"<{self.__class__.__name__}(suit=Suit.{self.suit.name.upper()}, value={self.value})>"
 
     def __str__(self) -> str:
-        value = self.character_value if self.character_value else str(self.value)
-        if self.suit.symbol:
-            suit = self.suit.symbol
-        elif self.suit.name == Suit.JOKERS.name:
+        if self.suit.name == Suit.JOKERS.name:
             return "Jkr"
-        else:
-            suit = f" {self.suit.name.capitalize()}"
+        value = self.character_value if self.character_value else str(self.value)
+        suit = self.suit.symbol if self.suit.symbol else f" {self.suit.name.capitalize()}"
         return f"{value}{suit}"
 
     def _value_to_char(
