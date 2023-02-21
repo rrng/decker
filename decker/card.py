@@ -24,8 +24,16 @@ class PlayingCard(Card):
         court_mapping: Optional[Dict[int, str]] = None,
         aces_high: bool = True,
     ) -> None:
+        if not isinstance(suit, Suit):
+            raise TypeError(f"suit must be type Suit, not: '{type(suit).__name__}'")
+        if not isinstance(value, int):
+            raise TypeError(f"value must be int, not: '{type(value).__name__}'")
+        if value < 1:
+            raise ValueError(f"value must be positive, not: {value}")
+        if aces_high and int(value) < 2:
+            raise ValueError(f"When aces_high is {aces_high}, value must be greater than 2, not: {value}")
         self.suit = suit
-        self.value = int(value)
+        self.value = value
         self.character_value = self._value_to_char(court_mapping, aces_high)
         super().__init__()
 
