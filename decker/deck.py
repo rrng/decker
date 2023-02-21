@@ -87,4 +87,6 @@ class PlayingCardDeck(Deck):
             for value in range(min_range, max_range):
                 self.cards.append(PlayingCard(suit, value, self.court_mapping))
         if self.include_jokers:
-            self.cards.extend([PlayingCard(Suit.JOKERS, 100), PlayingCard(Suit.JOKERS, 100)])
+            self.cards.extend(
+                [PlayingCard(Suit.JOKERS, 100), PlayingCard(Suit.JOKERS, 100)]
+            )
