@@ -5,12 +5,9 @@ from suit import Suit
 
 
 class Card:
-    def __init__(self) -> None:
+    def __init__(self, description: Optional[str] = None) -> None:
+        self.description = description
         self.is_face_up = False
-
-    @property
-    def description(self) -> Optional[str]:
-        return None
 
     def flip(self) -> None:
         self.is_face_up = not self.is_face_up
@@ -27,6 +24,7 @@ class PlayingCard(Card):
         value: int,
         court_mapping: Optional[Dict[int, str]] = None,
         aces_high: bool = True,
+        description: Optional[str] = None,
     ) -> None:
         if not isinstance(suit, Suit):
             raise TypeError(f"suit must be type Suit, not: '{type(suit).__name__}'")
@@ -41,7 +39,7 @@ class PlayingCard(Card):
         self.suit = suit
         self.value = value
         self.character_value = self._value_to_char(court_mapping, aces_high)
-        super().__init__()
+        super().__init__(description)
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}(suit=Suit.{self.suit.name.upper()}, value={self.value})>"
