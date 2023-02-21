@@ -15,6 +15,7 @@ class Suit(Enum):
     COINS = auto()
     CUPS = auto()
     SWORDS = auto()
+    JOKERS = 100
 
     def __str__(self):
         return self.name.capitalize()
