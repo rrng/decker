@@ -7,21 +7,27 @@ from color import Color
 
 @total_ordering
 class Suit(Enum):
-    CLUBS = (auto(), Color.BLACK)
-    DIAMONDS = (auto(), Color.RED)
-    HEARTS = (auto(), Color.RED)
-    SPADES = (auto(), Color.BLACK)
-    WANDS = (auto(), Color.BLACK)  # Clubs
-    COINS = (auto(), Color.RED)  # Diamonds
-    CUPS = (auto(), Color.RED)  # Hearts
-    SWORDS = (auto(), Color.BLACK)  # Spades
+    CLUBS = auto()
+    DIAMONDS = auto()
+    HEARTS = auto()
+    SPADES = auto()
+    WANDS = auto()
+    COINS = auto()
+    CUPS = auto()
+    SWORDS = auto()
 
     def __str__(self):
         return self.name.capitalize()
 
     @property
-    def color(self) -> Enum:
-        return self.value[1]
+    def color(self) -> Union[Enum, None]:
+        conversion = {
+            "Clubs": Color.BLACK,
+            "Diamonds": Color.RED,
+            "Hearts": Color.RED,
+            "Spades": Color.BLACK,
+        }
+        return conversion.get(self.name.capitalize())
 
     @property
     def symbol(self) -> Union[str, None]:
