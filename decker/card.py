@@ -8,6 +8,10 @@ class Card:
     def __init__(self) -> None:
         self.is_face_up = False
 
+    @property
+    def description(self) -> Optional[str]:
+        return None
+
     def flip(self) -> None:
         self.is_face_up = not self.is_face_up
 
@@ -31,7 +35,9 @@ class PlayingCard(Card):
         if value < 1:
             raise ValueError(f"value must be positive, not: {value}")
         if aces_high and int(value) < 2:
-            raise ValueError(f"When aces_high is {aces_high}, value must be greater than 2, not: {value}")
+            raise ValueError(
+                f"When aces_high is {aces_high}, value must be greater than 2, not: {value}"
+            )
         self.suit = suit
         self.value = value
         self.character_value = self._value_to_char(court_mapping, aces_high)
@@ -44,11 +50,15 @@ class PlayingCard(Card):
         if self.suit.name == Suit.JOKERS.name:
             return "Jkr"
         value = self.character_value if self.character_value else str(self.value)
-        suit = self.suit.symbol if self.suit.symbol else f" {self.suit.name.capitalize()}"
+        suit = (
+            self.suit.symbol if self.suit.symbol else f" {self.suit.name.capitalize()}"
+        )
         return f"{value}{suit}"
 
     def _value_to_char(
-        self, court_mapping: Optional[Dict[int, str]], aces_high: bool = True,
+        self,
+        court_mapping: Optional[Dict[int, str]],
+        aces_high: bool = True,
     ) -> Union[str, None]:
         if not court_mapping:
             court_mapping = self.default_court_mapping(aces_high)
